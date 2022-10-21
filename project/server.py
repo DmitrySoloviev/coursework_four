@@ -2,8 +2,8 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 
 from project.exceptions import BaseServiceError
-from project.setup.api import api
-from project.setup.db import db
+from project.setup.api.api import api
+from project.setup.db.db import db
 from project.views.auth import auth_ns, user_ns
 from project.views.main import genres_ns, directors_ns, movies_ns
 
@@ -28,7 +28,5 @@ def create_app(config_obj):
     api.add_namespace(movies_ns)
 
 
-
     app.register_error_handler(BaseServiceError, base_service_error_handler)
-
     return app

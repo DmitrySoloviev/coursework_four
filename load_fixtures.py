@@ -6,11 +6,12 @@ from sqlalchemy.exc import IntegrityError
 from project.config import config
 from project.models import Genre
 from project.server import create_app
-from project.setup.db import db, models
+from project.setup.db.db import db
+from project.setup.db.models import Base
 from project.utils import read_json
 
 
-def load_data(data: List[Dict[str, Any]], model: Type[models.Base]) -> None:
+def load_data(data: List[Dict[str, Any]], model: Type[Base]) -> None:
     for item in data:
         item['id'] = item.pop('pk')
         db.session.add(model(**item))

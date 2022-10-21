@@ -1,6 +1,6 @@
 from flask_restx import fields, Model
 
-from project.setup.api import api
+from project.setup.api.api import api
 
 genre: Model = api.model('Жанр', {
     'id': fields.Integer(required=True, example=1),
