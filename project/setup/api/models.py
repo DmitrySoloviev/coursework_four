@@ -14,11 +14,11 @@ director: Model = api.model('Режиссер', {
 
 movie: Model = api.model('Фильм', {
     'id': fields.Integer(required=True, example=1),
-    'name': fields.String(required=True, max_length=100, example='Иван Васильевич'),
+    'title': fields.String(required=True, max_length=100, example='Иван Васильевич'),
     'description': fields.String(required=True, max_length=300, example='Нормальный фильм'),
     'trailer': fields.String(required=True, max_length=300, example='link'),
-    'year': fields.Integer(required=False, example=2022),
-    'rating': fields.Float(required=False, example=1.0),
+    'year': fields.Integer(required=True, example=2022),
+    'rating': fields.Float(required=True, example=1.0),
     'genre': fields.Nested(genre),
     'director': fields.Nested(director)
 })
