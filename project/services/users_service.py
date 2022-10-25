@@ -48,4 +48,4 @@ class UsersService:
         if user:
             self.dao.update(email=user.email,
                             data={"password": generate_password_hash(data.get('password_2'))})
-            return self.check(login=user.email, password=data.get('password_2'))
+            return self.check(email=user.email, password=data.get('password_2'))

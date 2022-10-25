@@ -31,7 +31,7 @@ class BaseDAO(Generic[T]):
             except NotFound:
                 return []
         return stmt.all()
-
+"""
     def get_all_order_buy(self, filter: Optional[str], page: int):
         stmt: BaseQuery = self._db_session.query(self.__model__)
         if filter:
@@ -42,5 +42,5 @@ class BaseDAO(Generic[T]):
             except NotFound:
                 return []
         return stmt.all()
-
+"""
 

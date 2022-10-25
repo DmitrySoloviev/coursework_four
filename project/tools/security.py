@@ -4,7 +4,7 @@ import jwt
 import datetime
 import calendar
 from flask import current_app
-
+from project.constants import secret, algo
 
 def __generate_password_digest(password: str) -> bytes:
     return hashlib.pbkdf2_hmac(
@@ -38,14 +38,16 @@ def generate_tokens(email, password, password_hash=None, is_refresh=False):
     # 15 minutes token
     min15 = datetime.datetime.utcnow() + datetime.timedelta(minutes=current_app.config['TOKEN_EXPIRE_MINUTES'])
     data["exp"] = calendar.timegm(min15.timetuple())
-    access_token = jwt.encode(data, key=current_app.config['SECRET_KEY'],
-                              algorithm=current_app.config['ALGORITHM'])
+    #access_token = jwt.encode(data, key=current_app.config['SECRET_KEY'],
+                              #algorithm=current_app.config['ALGORITHM'])
+    access_token = jwt.encode(data, secret, algorithm=algo)
 
     # 130 days token
     day130 = datetime.datetime.utcnow() + datetime.timedelta(days=current_app.config['TOKEN_EXPIRE_DAYS'])
     data["exp"] = calendar.timegm(day130.timetuple())
-    refresh_token = jwt.encode(data, key=current_app.config['SECRET_KEY'],
-                               algorithm=current_app.config['ALGORITHM'])
+    #refresh_token = jwt.encode(data, key=current_app.config['SECRET_KEY'],
+    #                          algorithm=current_app.config['ALGORITHM'])
+    refresh_token = jwt.encode(data, secret, algorithm=algo)
 
     tokens = {"access_token": access_token, "refresh_token": refresh_token}
     return tokens

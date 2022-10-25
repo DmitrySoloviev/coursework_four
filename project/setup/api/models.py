@@ -25,17 +25,10 @@ movie: Model = api.model('Фильм', {
 
 
 user: Model = api.model('Пользователь', {
-    'id': fields.Integer(),
-    'email': fields.String(),
-    'password': fields.String(),
-    'name': fields.String(),
-    'surname': fields.String(),
-    'favorite_genre': fields.Nested(genre)
-})
-"""
-    'id': fields.Integer(example=1),
+    'id': fields.Integer(required=True,example=1),
     'password': fields.String(required=True, max_length=100, example='123@jhgfyL'),
     'email': fields.String(required=True, max_length=100, example='123@jhjhh.ru'),
     'name': fields.String(max_length=100, example='Ivan'),
     'surname': fields.String(max_length=100, example='Vasiliev'),
-"""
+    'favorite_genre': fields.Nested(genre)
+})

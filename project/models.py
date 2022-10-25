@@ -32,18 +32,12 @@ class Movie(db.Model):
 
 class User(db.Model):
     __tablename__ = 'user'
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String)
-    password = db.Column(db.String)
-    name = db.Column(db.String)
-    surname = db.Column(db.String)
-    favorite_genre = db.Column(db.Integer, db.ForeignKey("genres.id"))
-    genre = db.relationship("Genre")
-"""
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String, unique=False, nullable=True)
-    password = db.Column(db.String, nullable=True)
-"""
 
-user = User()
-print(user.email)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    email = Column(String(255), unique=True, nullable=False)
+    password = Column(String(255), nullable=False)
+    name = Column(String(255))
+    surname = Column(String(255))
+    favorite_genre = Column(String(255),ForeignKey(f'{Genre.__tablename__}.id'))
+    genre = relationship("Genre")
+

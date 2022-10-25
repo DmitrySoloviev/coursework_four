@@ -13,8 +13,8 @@ class RegisterView(Resource):
     @api.marshal_with(user, as_list=True, code=200, description='Ok')
     def post(self):
         req_json = request.json
-        if req_json.get("email") and req_json.get("password"):
-            return user_service.create(req_json.get("email"), req_json.get("password")), 201
+        if req_json.get('email') and req_json.get('password'):
+            return user_service.create(email=req_json.get('email'), password=req_json.get('password')), 201
         else:
             return "Нет данных", 401
 
