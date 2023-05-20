@@ -18,8 +18,8 @@ def shell():
 
 if __name__ == '__main__':
     app.run(
-        host='localhost',
-        port=8080,
+        host='0.0.0.0',
+        port=25000,
         debug=True
     )
 
